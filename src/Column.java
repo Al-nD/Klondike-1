@@ -19,20 +19,11 @@ public class Column extends Pile {
 
     @Override
     public void draw(Graphics g) {
-        // for (Card c: cards) {
-        //     c.draw(g);
-        //     try {
-        //     Image img = ImageIO.read(new File("images/cards/b1fh.png"));
-        //     g.drawImage(img, capacity * 400, 100, null);
-        //     } catch(Exception e) {
-
-        //     }
-        // }
         try {
             Image img = ImageIO.read(new File("images/cards/hj.png"));
             g.drawImage(img, 200 + capacity * (int)(img.getWidth(null) * 1.1), 100, null);
             } catch(Exception e) {
-            }
+        }
     }
 
     @Override
@@ -43,7 +34,7 @@ public class Column extends Pile {
 
     @Override
     public boolean canAddCard(Card c) {
-        return cards.size() < this.capacity;
+        return cards.size() < this.capacity && !cards.contains(c);
     }
 
     public void addCard(Card c) {
