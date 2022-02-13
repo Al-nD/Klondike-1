@@ -92,4 +92,8 @@ public class Card implements Drawable, Updateable{
     public boolean isFaceDown() {
         return this.faceDown;
     }
+
+    public String getSuit() {
+        return this.suit;
+    }
 }

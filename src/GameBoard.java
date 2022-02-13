@@ -43,10 +43,6 @@ public class GameBoard implements Drawable, Updateable {
 		for (Column c: columns) {
 			c.draw(g);
 		}
-		int x = 6 * 75 + xShift;
-		g.setColor(new Color(0, 255, 0));
-		g.fillRect(xShift + 75 * 4, yShift + 4 * 50, 75, 96);
-
 	}
 
 
@@ -58,11 +54,16 @@ public class GameBoard implements Drawable, Updateable {
 	 * @param me
 	 */
 	public void justClicked(MouseEvent me) {
-		int x = (me.getX() - xShift)/ 75;
-		int y = me.getY();
-		if (yShift + x * yMargin + 96 > y && y > yShift + x * yMargin) {
-			System.out.println("You just clicked ("+ x + ", " + y + ")");
-		}
+		// int x = (me.getX() - xShift)/ 75;
+		// int y = me.getY();
+		// if (yShift + x * yMargin + 96 > y && y > yShift + x * yMargin) {
+		// 	// System.out.println("You just clicked ("+ x + ", " + y + ")");
+		// 	if (firstClick) {
+		// 		prevX
+		// 	} else {
+
+		// 	}
+		// }
 	}
 
 	@Override
