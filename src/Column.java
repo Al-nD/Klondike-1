@@ -9,44 +9,59 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class Column extends Pile {
-    private int capacity;
+    private int location;
     private ArrayList<Card> cards;
 
-    public Column(int capacity) {
-        this.capacity = capacity;
+    public Column(int location) {
+        this.location = location;
         this.cards = new ArrayList<Card>();
     }
 
     @Override
     public void draw(Graphics g) {
-        try {
-            Image img = ImageIO.read(new File("images/cards/hj.png"));
-            g.drawImage(img, 200 + capacity * (int)(img.getWidth(null) * 1.1), 100, null);
-            } catch(Exception e) {
+        for (Card c: cards) {
+            c.draw(g);
         }
     }
 
     @Override
     public void update(ActionEvent a) {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public boolean canAddCard(Card c) {
-        return cards.size() < this.capacity && !cards.contains(c);
+        if (cards.size() == 0)
+            return true;
+        Card lastCard = cards.get(cards.size() - 1);
+        if ((c.oppositeColor(c) && c.compareTo(lastCard) == -1) || lastCard.isFaceDown()) {
+            return !cards.contains(c);
+        }
+        return false;
     }
 
     public void addCard(Card c) {
         if (canAddCard(c)) {
             cards.add(c);
             c.setCardNumber(cards.size());
-            c.setColumn(this.capacity);
+            c.setColumn(this.location);
+            c.flip();
         }
     }
 
-    public int getCapacity() {
-        return this.capacity;
+    public int getLocation() {
+        return this.location;
     }
+
+    public Card getCard() {
+        return cards.remove(cards.size() - 1);
+    }
+
+    public void addCards(ArrayList<Card> cards) {
+        for (Card c: cards) {
+            addCard(c);
+        }
+    }
+    
     
 }

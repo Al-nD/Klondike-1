@@ -13,8 +13,9 @@ public class GameBoard implements Drawable, Updateable {
 
 	private Column[] columns;
 	private Deck deck;
-	public static final int OFFSET_X = 40, OFFSET_Y = 20;
-	
+	// public static final int OFFSET_X = 40, OFFSET_Y = 20;
+    public final int xShift = 150, yShift = 200;
+    public final int xMargin = 75, yMargin = 50;
 	 
 	private int numdraws=0;
 	
@@ -26,7 +27,9 @@ public class GameBoard implements Drawable, Updateable {
 		for (int i = 0; i < 7; i++) {
 			columns[i] = new Column(i);
 		}
-		
+
+		deck.shuffle();
+		deck.giveCardsToColumns(columns);
 	}
 
 	/** @param g Graphics context onto which all Objects in the game
@@ -34,19 +37,16 @@ public class GameBoard implements Drawable, Updateable {
 	 */
 	public void draw(Graphics g) {
 		numdraws++;
-		g.setColor(new Color(40, 155, 70));
+		g.setColor(new Color(155, 30, 30));
 		g.fillRect(0, 0, 3000, 2000);
 		
-
-
-		// // this is just to test drawing a card
-		// g.drawImage(testImage, 30, 80, null);
-		// g.drawImage(backImage, 100, 80, null);
-		// g.drawImage(backImage, 105, 100, null);
-		for (int i = 0; i < 7; i++) {
-			Column column = new Column(i);
-			column.draw(g);
+		for (Column c: columns) {
+			c.draw(g);
 		}
+		int x = 6 * 75 + xShift;
+		g.setColor(new Color(0, 255, 0));
+		g.fillRect(xShift + 75 * 4, yShift + 4 * 50, 75, 96);
+
 	}
 
 
@@ -58,8 +58,11 @@ public class GameBoard implements Drawable, Updateable {
 	 * @param me
 	 */
 	public void justClicked(MouseEvent me) {
-		Point p = me.getPoint();
-		System.out.println("You just clicked "+ p);
+		int x = (me.getX() - xShift)/ 75;
+		int y = me.getY();
+		if (yShift + x * yMargin + 96 > y && y > yShift + x * yMargin) {
+			System.out.println("You just clicked ("+ x + ", " + y + ")");
+		}
 	}
 
 	@Override

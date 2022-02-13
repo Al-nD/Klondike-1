@@ -22,7 +22,7 @@ public class Deck extends Pile {
             cards.add(new Card(faces[i], "h")); 
             cards.add(new Card(faces[i], "d"));
             cards.add(new Card(faces[i], "s"));
-            cards.add(new Card(" + i", "c"));
+            cards.add(new Card(faces[i], "c"));
         }
 
     }
@@ -61,8 +61,12 @@ public class Deck extends Pile {
 
     public void giveCardsToColumns(Column[] cols) {
         for (Column col: cols) {
-            for (int j = 0; j < col.getCapacity(); j++) {
-                col.addCard(getCard());
+            for (int j = 0; j < col.getLocation(); j++) {
+                Card c = getCard();
+                if (j < col.getLocation() - 1) {
+                    c.flip();
+                }
+                col.addCard(c);                
             }
         }
     }
