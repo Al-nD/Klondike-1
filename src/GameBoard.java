@@ -25,7 +25,7 @@ public class GameBoard implements Drawable, Updateable {
 		columns = new Column[7];
 		deck = new Deck();
 		for (int i = 0; i < 7; i++) {
-			columns[i] = new Column(i);
+			columns[i] = new Column(i + 1);
 		}
 
 		deck.shuffle();
@@ -40,6 +40,8 @@ public class GameBoard implements Drawable, Updateable {
 		g.setColor(new Color(155, 30, 30));
 		g.fillRect(0, 0, 3000, 2000);
 		
+		deck.draw(g);
+
 		for (Column c: columns) {
 			c.draw(g);
 		}

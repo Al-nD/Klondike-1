@@ -96,4 +96,8 @@ public class Card implements Drawable, Updateable{
     public String getSuit() {
         return this.suit;
     }
+
+    public String getValue() {
+        return this.value;
+    }
 }
