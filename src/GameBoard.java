@@ -8,15 +8,13 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-public class GameBoard implements Drawable, Updateable {
-	
-
+public class GameBoard implements Drawable, Updateable {	
 	private Column[] columns;
 	private Deck deck;
 	// public static final int OFFSET_X = 40, OFFSET_Y = 20;
     public final int xShift = 150, yShift = 200;
     public final int xMargin = 75, yMargin = 50;
-	 
+	private Card prevCard;
 	private int numdraws=0;
 	
 	
@@ -56,14 +54,11 @@ public class GameBoard implements Drawable, Updateable {
 	 * @param me
 	 */
 	public void justClicked(MouseEvent me) {
-		// int x = (me.getX() - xShift)/ 75;
-		// int y = me.getY();
-		// if (yShift + x * yMargin + 96 > y && y > yShift + x * yMargin) {
-		// 	// System.out.println("You just clicked ("+ x + ", " + y + ")");
-		// 	if (firstClick) {
-		// 		prevX
-		// 	} else {
+		// for (Column col: columns) {
+		// 	for (Card c: col.) {
+		// 		if (c.clickedOn(me)) {
 
+		// 		}
 		// 	}
 		// }
 	}
@@ -72,6 +67,10 @@ public class GameBoard implements Drawable, Updateable {
 	// this update will be called each time the timer in the KlondikeGame
 	// goes off.  This will be convenient for animating.
 	public void update(ActionEvent a) {
+		
+	}
+
+	public void addToFoundation(Foundation f, Column c) {
 		
 	}
 

@@ -41,5 +41,11 @@ public class Foundation extends Pile{
             cards.add(c);
         }
     }
+
+    public void addAll(ArrayList<Card> cards) {
+        for (Card c: cards) {
+            addCard(c);
+        }
+    }
     
 }

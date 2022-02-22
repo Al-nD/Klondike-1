@@ -66,9 +66,17 @@ public class Deck extends Pile {
                 if (j < col.getLocation() - 1) {
                     c.flip();
                 }
+                c.setInDeck(false);
+                c.setInColumn(true);
                 col.addCard(c);                
             }
         }
     }
-    
+
+    public void addAll(ArrayList<Card> cards) {
+        for (int i = cards.size() - 1; i > -1; i--) {
+            Card c = cards.remove(i);
+            addCard(c);
+        }
+    }
 }

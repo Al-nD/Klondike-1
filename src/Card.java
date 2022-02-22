@@ -21,13 +21,18 @@ public class Card implements Drawable, Updateable{
     private boolean faceDown;
     private Image frontImage;
     private Image backImage;
+    private boolean inDeck;
+    private boolean inColumn;
+    private boolean inFoundation;
     public final int xShift = 150, yShift = 200;
     public final int xMargin = 75, yMargin = 50;
+
+    private int x, y;
 
     public Card(String v, String s) {
         value = v;
         suit = s;
-        isRed = (s.equals("Diamond") || s.equals("Heart"));
+        isRed = (s.equals("d") || s.equals("h"));
         try {
             frontImage = ImageIO.read(new File("images/cards/" + suit + value + ".png"));
         } catch (IOException e) {
@@ -39,11 +44,21 @@ public class Card implements Drawable, Updateable{
             e.printStackTrace();
         }
         faceDown = true;
+        inDeck = true;
+        inColumn = false;
+        inFoundation = false;
     }
 
     public void draw(Graphics g) {		
         Image img = (faceDown)? (backImage):(frontImage);
-        g.drawImage(img, xShift + xMargin * column, yShift +  yMargin * cardNumber, null);
+        if (inColumn) {
+            g.drawImage(img, xShift + xMargin * column, yShift +  yMargin * cardNumber, null);
+        } else if (inDeck) {
+            g.drawImage(img, 50, 250, null);
+        } else {
+            int foundationNumber = (suit.equals("s"))? 1: (suit.equals("c"))? 2: (suit.equals("h"))? 3:  4;
+            g.drawImage(img, 200 + 75 * foundationNumber, 100, null);
+        }
     }
 
     public void update(ActionEvent e) {
@@ -100,4 +115,29 @@ public class Card implements Drawable, Updateable{
     public String getValue() {
         return this.value;
     }
+
+    public void setInDeck(boolean inDeck) {
+        this.inDeck = inDeck;
+    }
+
+    public void setInColumn(boolean inColumn) {
+        this.inColumn = inColumn;
+    }
+
+    public void setInFoundation(boolean inFoundation) {
+        this.inFoundation = inFoundation;
+    }
+
+    // public boolean clickedOn(MouseEvent me) {
+        // if (this.faceDown) 
+        //     return false;
+        // int x = me.getX();
+        // int y = me.getY();
+        // if (this.inFoundation && me.get) {
+
+        // }
+        // return false;
+    // }
+
+    
 }

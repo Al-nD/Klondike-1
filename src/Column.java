@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 public class Column extends Pile {
     private int location;
     private ArrayList<Card> cards;
+    private ArrayList<Card> cardsToBeAdded;
 
     public Column(int location) {
         this.location = location;
@@ -53,7 +54,7 @@ public class Column extends Pile {
         return this.location;
     }
 
-    public Card getCard() {
+    public Card getLastCard() {
         return cards.remove(cards.size() - 1);
     }
 
@@ -62,6 +63,15 @@ public class Column extends Pile {
             addCard(c);
         }
     }
-    
+
+    public Card getCard(int i) {
+        if (i < cards.size())
+            return this.cards.get(i);
+        return null;
+    }
+
+    public void addToFoundation(Foundation f) {
+        f.addAll(cardsToBeAdded);
+    }
     
 }
