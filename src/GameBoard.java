@@ -54,13 +54,11 @@ public class GameBoard implements Drawable, Updateable {
 	 * @param me
 	 */
 	public void justClicked(MouseEvent me) {
-		// for (Column col: columns) {
-		// 	for (Card c: col.) {
-		// 		if (c.clickedOn(me)) {
-
-		// 		}
-		// 	}
-		// }
+		for (Column col: columns) {
+			for (Card c: col.getCards()) {
+				c.clickedOn(me);
+			}
+		}
 	}
 
 	@Override

@@ -52,12 +52,18 @@ public class Card implements Drawable, Updateable{
     public void draw(Graphics g) {		
         Image img = (faceDown)? (backImage):(frontImage);
         if (inColumn) {
-            g.drawImage(img, xShift + xMargin * column, yShift +  yMargin * cardNumber, null);
+            x = xShift + xMargin * column;
+            y = yShift +  yMargin * cardNumber;
+            g.drawImage(img, x, y, null);
         } else if (inDeck) {
+            x = 50;
+            y = 250;
             g.drawImage(img, 50, 250, null);
         } else {
             int foundationNumber = (suit.equals("s"))? 1: (suit.equals("c"))? 2: (suit.equals("h"))? 3:  4;
-            g.drawImage(img, 200 + 75 * foundationNumber, 100, null);
+            x = 200 + 75 * foundationNumber;
+            y = 100;
+            g.drawImage(img, x, 100, null);
         }
     }
 
@@ -128,16 +134,31 @@ public class Card implements Drawable, Updateable{
         this.inFoundation = inFoundation;
     }
 
-    // public boolean clickedOn(MouseEvent me) {
-        // if (this.faceDown) 
-        //     return false;
-        // int x = me.getX();
-        // int y = me.getY();
-        // if (this.inFoundation && me.get) {
+    public void clickedOn(MouseEvent me) {
 
+        String ans = x + ", " + y;
+        Image temp = (faceDown)? backImage: frontImage;
+        // if (inColumn) {
+        //     if ((x < me.getX() && me.getX() < x + temp.getWidth(null)) && 
+        //     (y < me.getY() && me.getY() < y + temp.getHeight(null))) {
+        //         System.out.println(ans);
+        //     }
+        // } else if (inDeck && (x < me.getX() && me.getX() < x + temp.getWidth(null)) && 
+        // (y < me.getY() && me.getY() < y + temp.getHeight(null))) {
+        //     System.out.println(ans);;
+        // } else if (inFoundation) {
+        //     if ((x < me.getX() && me.getX() < x + temp.getWidth(null)) && 
+        //     (y < me.getY() && me.getY() < y + temp.getHeight(null))) {
+        //         System.out.println(ans);;
+        //     }
         // }
-        // return false;
-    // }
+        // System.out.println(x + ", " + me.getX());
+        // System.out.println(y + ", " + me.getY());
+        if ((x < me.getX() && me.getX() < x + temp.getWidth(null)) && 
+            (y < me.getY() && me.getY() < y + temp.getHeight(null)) && !this.faceDown) {
+                System.out.println(ans);;
+            }
+    }
 
     
 }

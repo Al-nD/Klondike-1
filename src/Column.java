@@ -64,6 +64,8 @@ public class Column extends Pile {
         }
     }
 
+    
+
     public Card getCard(int i) {
         if (i < cards.size())
             return this.cards.get(i);
@@ -72,6 +74,10 @@ public class Column extends Pile {
 
     public void addToFoundation(Foundation f) {
         f.addAll(cardsToBeAdded);
+    }
+
+    public ArrayList<Card> getCards() {
+        return this.cards;
     }
     
 }
