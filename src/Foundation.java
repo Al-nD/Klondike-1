@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
@@ -17,7 +17,9 @@ public class Foundation extends Pile{
         if (cards.size() > 0) {
             cards.get(cards.size() - 1).draw(g);
         } else {
-            
+            int loc = (suit.equals("h"))? 0: (suit.equals("d"))? 1 : 4;
+            // g.setColor(new Color(50, 50, 50))
+            // g.fillRect(0, 0, 3000, 2000);
         }
     }
 

@@ -2,7 +2,11 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.management.MBeanServer;
 
 public class Deck extends Pile {
@@ -33,8 +37,11 @@ public class Deck extends Pile {
 
     @Override
     public void draw(Graphics g) {
-        for (Card c: cards) {
-            c.draw(g);
+        try {
+            Image img = ImageIO.read(new File("images/cards/b1fv.png"));
+            g.drawImage(img, 50, 250, null);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -138,22 +138,7 @@ public class Card implements Drawable, Updateable{
 
         String ans = x + ", " + y;
         Image temp = (faceDown)? backImage: frontImage;
-        // if (inColumn) {
-        //     if ((x < me.getX() && me.getX() < x + temp.getWidth(null)) && 
-        //     (y < me.getY() && me.getY() < y + temp.getHeight(null))) {
-        //         System.out.println(ans);
-        //     }
-        // } else if (inDeck && (x < me.getX() && me.getX() < x + temp.getWidth(null)) && 
-        // (y < me.getY() && me.getY() < y + temp.getHeight(null))) {
-        //     System.out.println(ans);;
-        // } else if (inFoundation) {
-        //     if ((x < me.getX() && me.getX() < x + temp.getWidth(null)) && 
-        //     (y < me.getY() && me.getY() < y + temp.getHeight(null))) {
-        //         System.out.println(ans);;
-        //     }
-        // }
-        // System.out.println(x + ", " + me.getX());
-        // System.out.println(y + ", " + me.getY());
+        // if (inDeck && this.equals()) 
         if ((x < me.getX() && me.getX() < x + temp.getWidth(null)) && 
             (y < me.getY() && me.getY() < y + temp.getHeight(null)) && !this.faceDown) {
                 System.out.println(ans);;
